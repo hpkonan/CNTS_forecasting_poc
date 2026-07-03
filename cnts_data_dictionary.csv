@@ -1,0 +1,12 @@
+column,description
+month,Mois d'observation au format YYYY-MM
+region,Région sanitaire simulée
+blood_group,Groupe sanguin ABO/Rh
+hospital_demand_units,Nombre d'unités demandées par les hôpitaux
+collected_units,Nombre d'unités collectées
+available_stock_units,Stock disponible simulé en début/pendant le mois
+expired_units,Unités expirées ou perdues
+season,Contexte saisonnier simplifié
+shortage_flag,"1 si la demande dépasse le stock disponible, sinon 0"
+coverage_ratio,Stock disponible / demande hospitalière
+risk_level,Niveau de risque basé sur la couverture du besoin
