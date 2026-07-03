@@ -1,4 +1,4 @@
-<title>CNTS — Note de cadrage du prototype</title>
+<title>CNTS — Note de cadrage du prototype (v1.1)</title>
 <style>
   @font-face {
     font-family: 'Newsreader';
@@ -124,6 +124,7 @@
 
   .eyebrow--on-dark{ color:#B9C7CE; }
   .eyebrow--rust{ color:var(--rust); }
+  .eyebrow--navy{ color:var(--navy); }
 
   /* ---------- layout shells ---------- */
 
@@ -172,13 +173,13 @@
     font-size:var(--fs-h1);
     line-height:1.08;
     letter-spacing:-0.01em;
-    max-width:15ch;
+    max-width:16ch;
   }
 
   .hero__lead{
     font-size:var(--fs-lead);
     color:var(--ink-soft);
-    max-width:46ch;
+    max-width:48ch;
     font-family:'Newsreader', serif;
     font-style:italic;
     font-weight:400;
@@ -304,6 +305,85 @@
     font-size:0.95rem;
   }
 
+  /* ---------- pull quote ---------- */
+
+  .pull-quote{
+    margin-top:28px;
+    padding:22px 26px;
+    background:var(--navy-deep);
+    color:#F1EEE4;
+  }
+  .pull-quote p{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    line-height:1.5;
+  }
+  .pull-quote p + p{ margin-top:10px; color:#9FB0B8; font-size:0.95rem; font-style:normal; font-family:'Public Sans',sans-serif;}
+
+  /* ---------- executive summary card ---------- */
+
+  .exec-card{
+    margin-top:8px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-left:5px solid var(--navy);
+    padding:26px 28px;
+  }
+  .exec-card__label{
+    display:block;
+    margin-bottom:14px;
+  }
+  .exec-card ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .exec-card li{
+    padding-left:20px;
+    position:relative;
+    font-size:1rem;
+  }
+  .exec-card li::before{
+    content:'';
+    position:absolute;
+    left:0; top:0.6em;
+    width:6px; height:6px;
+    background:var(--navy);
+  }
+  .exec-card li b{ font-variant-numeric:tabular-nums; }
+
+  /* ---------- priority table ---------- */
+
+  .priority-table{
+    margin-top:28px;
+    border:1px solid var(--line);
+    overflow-x:auto;
+  }
+  .priority-table table{ width:100%; border-collapse:collapse; min-width:480px; }
+  .priority-table th{
+    text-align:left;
+    font-size:var(--fs-eyebrow);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    padding:12px 18px;
+    border-bottom:1px solid var(--line);
+    background:var(--paper-raised);
+  }
+  .priority-table td{
+    padding:13px 18px;
+    border-bottom:1px solid var(--line);
+    font-size:0.95rem;
+    font-variant-numeric:tabular-nums;
+  }
+  .priority-table tr:last-child td{ border-bottom:none; }
+  .priority-table td.urgent{ color:var(--risk-high); font-weight:600; }
+
   /* ---------- stat band ---------- */
 
   .stat-band{
@@ -382,6 +462,45 @@
     color:var(--ink-faint);
   }
 
+  /* ---------- decision options (scenario picker showcase) ---------- */
+
+  .decision-list{
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .decision-option{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 20px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+  }
+  .decision-option__dot{
+    flex:none;
+    width:18px; height:18px;
+    border-radius:50%;
+    border:2px solid var(--ink-faint);
+  }
+  .decision-option__label{
+    flex:1;
+    font-size:0.98rem;
+  }
+  .decision-option__result{
+    flex:none;
+  }
+  .decision-option--chosen{
+    border-color:var(--navy);
+    background:var(--navy-tint);
+  }
+  .decision-option--chosen .decision-option__dot{
+    border-color:var(--navy);
+    background:
+      radial-gradient(circle, var(--navy) 0 5px, transparent 5px);
+  }
+
   /* ---------- dashboard mock ---------- */
 
   .mock{
@@ -411,6 +530,18 @@
   }
 
   .mock__body{ padding:24px; }
+
+  .mock__exec{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--navy);
+    padding:16px 18px;
+    margin-bottom:20px;
+    font-size:0.86rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .mock__exec b{ color:var(--ink); }
 
   .mock__kpis{
     display:grid;
@@ -470,6 +601,46 @@
     margin-top:14px;
     font-size:var(--fs-small);
     color:var(--ink-faint);
+  }
+
+  /* ---------- strategy comparison table ---------- */
+
+  .strategy-table{
+    margin-top:28px;
+    border:1px solid var(--line);
+    overflow-x:auto;
+  }
+  .strategy-table table{ width:100%; border-collapse:collapse; min-width:600px; }
+  .strategy-table th{
+    text-align:left;
+    font-size:var(--fs-eyebrow);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    padding:12px 16px;
+    border-bottom:1px solid var(--line);
+    background:var(--paper-raised);
+  }
+  .strategy-table td{
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:0.93rem;
+    vertical-align:middle;
+  }
+  .strategy-table tr:last-child td{ border-bottom:none; }
+  .strategy-table tr.recommended td{ background:rgba(220,232,222,0.35); }
+  .stars{ letter-spacing:1px; color:var(--rust); font-size:0.95rem; }
+  .badge-reco{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:0.76rem;
+    font-weight:600;
+    color:var(--risk-low);
+    background:var(--risk-low-bg);
+    padding:4px 9px;
+    border-radius:100px;
   }
 
   /* ---------- comparison table ---------- */
@@ -561,6 +732,43 @@
   .needs-box .eyebrow{ margin-bottom:10px; }
   .needs-box p{ color:#C8D3D7; font-size:0.97rem; max-width:62ch; }
 
+  /* ---------- trajectory ---------- */
+
+  .trajectory{
+    margin-top:32px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .traj-row{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .traj-row:last-child{ border-bottom:1px solid var(--line); }
+  .traj-row__version{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    color:var(--rust);
+    font-size:1.05rem;
+  }
+  .traj-row__version span{
+    display:block;
+    font-family:'Public Sans',sans-serif;
+    font-style:normal;
+    font-size:0.72rem;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:2px;
+  }
+  .traj-row__desc{ color:var(--ink-soft); font-size:0.95rem; }
+  .traj-row--current .traj-row__version{ color:var(--navy); font-weight:600; font-style:normal; }
+  .traj-row--current .traj-row__desc{ color:var(--ink); }
+  .traj-row--future{ opacity:0.7; }
+
   /* ---------- closing ---------- */
 
   .closing{
@@ -601,6 +809,7 @@
     .step-grid{ grid-template-columns:1fr; }
     .rec-grid{ grid-template-columns:1fr; }
     .mock__kpis{ grid-template-columns:repeat(2,1fr); }
+    .traj-row{ grid-template-columns:1fr; gap:4px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -610,16 +819,15 @@
 
 <header class="hero">
   <div class="shell hero__flex">
-    <span class="eyebrow eyebrow--rust">CNTS · Prototype d'aide à la décision</span>
-    <h1>Vos données montrent le problème. Ce prototype dit quoi faire.</h1>
-    <p class="hero__lead">Note de cadrage : comment transformer les stocks et la demande déjà suivis par le CNTS en recommandations opérationnelles claires — sans modèle d'intelligence artificielle, sans nouvelle collecte de données.</p>
+    <span class="eyebrow eyebrow--rust">CNTS · Système d'aide à la décision — v1.1</span>
+    <h1>Vos données montrent le problème. Ce prototype dit quoi faire — et pourquoi.</h1>
+    <p class="hero__lead">Ce n'est pas un outil de prévision. C'est un système qui transforme les données déjà suivies par le CNTS en décisions concrètes, chiffrées et justifiées — pour décider plus vite, plus objectivement.</p>
     <div class="meta-row">
-      <span class="chip"><span class="chip__dot"></span>Prototype fonctionnel</span>
+      <span class="chip"><span class="chip__dot"></span>Prototype fonctionnel — v1.1</span>
       <span class="chip">Données simulées — 36 mois, 5 régions, 8 groupes sanguins</span>
     </div>
     <div class="cta-row">
       <a class="btn btn--rust" href="https://cntsforecastingpoc-k5wfndy7ydr29sbgn3va26.streamlit.app/" target="_blank" rel="noopener">Ouvrir le prototype ↗</a>
-      <a class="btn btn--ghost" href="https://github.com/hpkonan/CNTS_forecasting_poc" target="_blank" rel="noopener">Code source ↗</a>
     </div>
   </div>
 </header>
@@ -656,25 +864,30 @@
       </div>
       <div class="prose">
         <p>Le prototype ne cherche pas à prédire l'avenir avec précision. Il applique des règles métier explicites — des seuils sur le ratio stock/demande — pour transformer chaque situation en risque classé et en action recommandée.</p>
-        <p style="margin-top:16px;">Ce choix est délibéré&nbsp;: un directeur doit pouvoir remettre en cause chaque recommandation en connaissant exactement le seuil qui l'a déclenchée. Avec trois ans de données mensuelles, un modèle d'IA plus sophistiqué n'apporterait pas de fiabilité supplémentaire — seulement de l'opacité.</p>
+        <p style="margin-top:16px;">Ce choix est délibéré&nbsp;: un directeur doit pouvoir remettre en cause chaque recommandation en connaissant exactement le seuil qui l'a déclenchée.</p>
       </div>
 
       <div class="step-grid">
         <div class="step-card">
           <span class="step-card__num">Étape 1</span>
           <h3>Classer</h3>
-          <p>Chaque région × groupe sanguin reçoit un niveau de risque — Faible, Moyen ou Élevé — calculé à partir du stock disponible et de la demande hospitalière.</p>
+          <p>Chaque région × groupe sanguin reçoit un niveau de risque — Faible, Moyen ou Élevé — et ses causes probables.</p>
         </div>
         <div class="step-card">
           <span class="step-card__num">Étape 2</span>
-          <h3>Associer</h3>
-          <p>Le moteur repère les régions en excédent capables d'approvisionner une région en déficit, groupe sanguin par groupe sanguin.</p>
+          <h3>Chiffrer</h3>
+          <p>Chaque option — collecte, transfert, statu quo — est traduite en unités, en jours de stock, et en risque résultant.</p>
         </div>
         <div class="step-card">
           <span class="step-card__num">Étape 3</span>
-          <h3>Traduire</h3>
-          <p>Chaque situation à risque devient une phrase lisible, avec une action concrète — prête à être lue par un non-technicien.</p>
+          <h3>Recommander</h3>
+          <p>Le moteur compare les options et désigne explicitement la plus efficace pour le moins d'effort.</p>
         </div>
+      </div>
+
+      <div class="pull-quote">
+        <p>« Le forecasting, les règles métier et les recommandations sont des composants internes. La valeur du produit est d'aider le CNTS à décider plus vite, de façon plus objective, plus transparente et plus explicable. »</p>
+        <p>Positionnement du produit — pas un outil de prévision, un système d'aide à la décision.</p>
       </div>
     </div>
   </section>
@@ -682,7 +895,46 @@
   <section>
     <div class="shell">
       <div class="section-head">
-        <span class="eyebrow">§ 3 — La preuve</span>
+        <span class="eyebrow">§ 3 — Le résumé exécutif</span>
+        <h2>La situation nationale, en 15 secondes</h2>
+      </div>
+      <div class="prose">
+        <p>Nouveau en v1.1&nbsp;: avant tout tableau, le prototype génère automatiquement un résumé exécutif. Voici, mot pour mot, ce qu'il a produit sur le dernier mois du jeu de données simulé.</p>
+      </div>
+
+      <div class="exec-card">
+        <span class="eyebrow eyebrow--navy exec-card__label">Résumé exécutif — généré automatiquement, décembre 2025</span>
+        <ul>
+          <li><b>5</b> régions présentent un risque élevé.</li>
+          <li>Le déficit estimé est de <b>605</b> unités.</li>
+          <li>Les groupes <b>O+</b> et <b>B+</b> sont les plus sous tension.</li>
+          <li>La priorité est une campagne ciblée à <b>Bouaké</b> et <b>Abidjan</b>.</li>
+          <li>Aucune redistribution suffisante n'est disponible ce mois-ci&nbsp;: la priorité est la collecte.</li>
+        </ul>
+      </div>
+
+      <div class="priority-table">
+        <table>
+          <thead>
+            <tr><th>Région</th><th>Groupe</th><th>Risque</th><th>Jours de stock restants</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>San Pedro</td><td>O-</td><td>Élevé</td><td class="urgent">12,4 jours</td></tr>
+            <tr><td>Korhogo</td><td>O-</td><td>Élevé</td><td class="urgent">14,1 jours</td></tr>
+            <tr><td>Yamoussoukro</td><td>B-</td><td>Élevé</td><td>15,0 jours</td></tr>
+            <tr><td>San Pedro</td><td>B-</td><td>Élevé</td><td>15,0 jours</td></tr>
+            <tr><td>Bouaké</td><td>O-</td><td>Élevé</td><td>15,5 jours</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mock-caption">« Jours de stock » : estimation au rythme de consommation du mois (demande mensuelle / 30) — un rythme, pas une prévision. Classement par urgence réelle, pas seulement par niveau de risque.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">§ 4 — La preuve</span>
         <h2>Est-ce que ça tient la route ?</h2>
       </div>
 
@@ -696,13 +948,13 @@
       <div class="rec-grid">
         <div class="rec-card">
           <span class="rec-card__tag">Risque élevé</span>
-          <h3>Bouaké / O+ — couverture 0,68</h3>
-          <p>Collecte ciblée urgente&nbsp;+ vérifier une redistribution depuis une région en surplus.</p>
+          <h3>Bouaké / O+ — 20,5 jours de stock</h3>
+          <p>Hausse inhabituelle de la demande (+27&nbsp;%) et stock sous le seuil de sécurité. Collecte ciblée d'environ 43 unités recommandée.</p>
         </div>
         <div class="rec-card">
           <span class="rec-card__tag">Risque élevé</span>
           <h3>Bouaké / AB+ — transfert disponible</h3>
-          <p>5 unités disponibles à Abidjan → transfert suggéré vers Bouaké, Yamoussoukro et Korhogo.</p>
+          <p>5 unités disponibles à Abidjan → transfert recommandé plutôt qu'une collecte, pour un résultat équivalent et moins d'effort.</p>
         </div>
       </div>
       <p class="rec-caption">Extraits réels générés par le moteur sur le jeu de données simulé — décembre 2025 et juin 2024.</p>
@@ -712,31 +964,94 @@
   <section>
     <div class="shell">
       <div class="section-head">
-        <span class="eyebrow">§ 4 — Le prototype en un coup d'œil</span>
+        <span class="eyebrow">§ 5 — Le décideur choisit une décision</span>
+        <h2>Pas des curseurs techniques — des options métier</h2>
+      </div>
+      <div class="prose">
+        <p>Le simulateur ne demande plus « combien d'unités ? ». Il présente des décisions, déjà chiffrées par le moteur, et calcule le risque résultant de chacune.</p>
+      </div>
+
+      <div class="decision-list">
+        <div class="decision-option">
+          <span class="decision-option__dot"></span>
+          <span class="decision-option__label">Organiser une campagne ciblée à Bouaké (+43 unités)</span>
+          <span class="decision-option__result"><span class="risk-pill risk-pill--medium">→ Moyen</span></span>
+        </div>
+        <div class="decision-option decision-option--chosen">
+          <span class="decision-option__dot"></span>
+          <span class="decision-option__label"><b>Ne rien faire</b></span>
+          <span class="decision-option__result"><span class="risk-pill risk-pill--high">→ Élevé</span></span>
+        </div>
+      </div>
+
+      <div class="strategy-table">
+        <table>
+          <thead>
+            <tr><th>Stratégie</th><th>Détail</th><th>Risque obtenu</th><th>Impact</th><th>Effort</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr class="recommended">
+              <td><b>Transfert</b></td>
+              <td>5 unités depuis Abidjan</td>
+              <td><span class="risk-pill risk-pill--medium">Moyen</span></td>
+              <td class="stars">★★★☆☆</td>
+              <td class="stars">★★☆☆☆</td>
+              <td><span class="badge-reco">✓ Recommandée</span></td>
+            </tr>
+            <tr>
+              <td>Campagne de collecte</td>
+              <td>+1 unité collectée</td>
+              <td><span class="risk-pill risk-pill--medium">Moyen</span></td>
+              <td class="stars">★★★☆☆</td>
+              <td class="stars">★★★☆☆</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Aucune action</td>
+              <td>Statu quo</td>
+              <td><span class="risk-pill risk-pill--high">Élevé</span></td>
+              <td class="stars">★☆☆☆☆</td>
+              <td class="stars">☆☆☆☆☆</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="rec-caption">Exemple réel — Bouaké / AB+, juin 2024. Le moteur recommande explicitement l'option la moins coûteuse pour un résultat au moins équivalent.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">§ 6 — Le prototype en un coup d'œil</span>
         <h2>Ce que verrait un utilisateur</h2>
       </div>
       <div class="prose">
-        <p>Un tableau de bord filtrable par mois, région et groupe sanguin&nbsp;: indicateurs clés en tête, carte du risque par région, détail coloré par situation, et recommandations en langage clair.</p>
+        <p>Un tableau de bord filtrable par mois, région et groupe sanguin&nbsp;: résumé exécutif en tête, priorités nationales, détail coloré par situation, et une décision recommandée à chaque étape.</p>
       </div>
 
       <div class="mock" aria-hidden="true">
         <div class="mock__bar"><span></span><span></span><span></span><em>cntsforecastingpoc.streamlit.app</em></div>
         <div class="mock__body">
+          <div class="mock__exec">
+            <b>Résumé exécutif —</b> 5 région(s) présentent un risque élevé. Le déficit estimé est de 605 unités. Les groupes O+ et B+ sont les plus sous tension.
+          </div>
           <div class="mock__kpis">
-            <div class="mock__kpi"><b>4</b><span>Régions en risque élevé</span></div>
-            <div class="mock__kpi"><b>7</b><span>Groupes sous tension</span></div>
-            <div class="mock__kpi"><b>612</b><span>Déficit total (unités)</span></div>
+            <div class="mock__kpi"><b>5</b><span>Régions en risque élevé</span></div>
+            <div class="mock__kpi"><b>2</b><span>Groupes sous tension</span></div>
+            <div class="mock__kpi"><b>605</b><span>Déficit total (unités)</span></div>
             <div class="mock__kpi"><b>0</b><span>Transferts suggérés</span></div>
           </div>
           <table>
             <thead>
-              <tr><th>Région</th><th>Groupe</th><th>Couverture</th><th>Risque</th></tr>
+              <tr><th>Région</th><th>Groupe</th><th>Jours de stock</th><th>Risque</th></tr>
             </thead>
             <tbody>
-              <tr><td>Bouaké</td><td>O+</td><td>0,68</td><td><span class="risk-pill risk-pill--high">Élevé</span></td></tr>
-              <tr><td>Abidjan</td><td>B+</td><td>0,85</td><td><span class="risk-pill risk-pill--high">Élevé</span></td></tr>
-              <tr><td>Bouaké</td><td>A+</td><td>0,83</td><td><span class="risk-pill risk-pill--medium">Moyen</span></td></tr>
-              <tr><td>Yamoussoukro</td><td>O-</td><td>1,12</td><td><span class="risk-pill risk-pill--low">Faible</span></td></tr>
+              <tr><td>San Pedro</td><td>O-</td><td>12,4</td><td><span class="risk-pill risk-pill--high">Élevé</span></td></tr>
+              <tr><td>Korhogo</td><td>O-</td><td>14,1</td><td><span class="risk-pill risk-pill--high">Élevé</span></td></tr>
+              <tr><td>Bouaké</td><td>A+</td><td>22,3</td><td><span class="risk-pill risk-pill--medium">Moyen</span></td></tr>
+              <tr><td>Yamoussoukro</td><td>O-</td><td>34,8</td><td><span class="risk-pill risk-pill--low">Faible</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -752,7 +1067,7 @@
   <section>
     <div class="shell">
       <div class="section-head">
-        <span class="eyebrow">§ 5 — Transparence</span>
+        <span class="eyebrow">§ 7 — Transparence</span>
         <h2>Ce qui est simulé aujourd'hui, ce qui serait réel demain</h2>
       </div>
 
@@ -782,14 +1097,14 @@
               <td class="mission">Compatibilité ABO/Rh complète (ex. O- donneur universel)</td>
             </tr>
             <tr>
+              <td>Horizon</td>
+              <td class="today">Estimation de rythme (jours de stock restants)</td>
+              <td class="mission">Prévision à 30 jours, calibrée sur données réelles</td>
+            </tr>
+            <tr>
               <td>Accès</td>
               <td class="today">Dashboard autonome, démonstration</td>
               <td class="mission">Intégration avec le logiciel existant du CNTS</td>
-            </tr>
-            <tr>
-              <td>Horizon</td>
-              <td class="today">Photo du mois en cours</td>
-              <td class="mission">Projection à 30 jours</td>
             </tr>
           </tbody>
         </table>
@@ -800,7 +1115,37 @@
   <section>
     <div class="shell">
       <div class="section-head">
-        <span class="eyebrow">§ 6 — La mission proposée</span>
+        <span class="eyebrow">§ 8 — Trajectoire</span>
+        <h2>Ce que ce rythme dit de la suite</h2>
+      </div>
+      <div class="prose">
+        <p>Le prototype a été construit et étendu par itérations courtes, chacune validée avant la suivante. C'est le même rythme qui s'appliquerait à une mission.</p>
+      </div>
+      <div class="trajectory">
+        <div class="traj-row">
+          <div class="traj-row__version">v0.1<span>Fondations</span></div>
+          <div class="traj-row__desc">Moteur de règles, recommandations simples, tableau de bord interactif.</div>
+        </div>
+        <div class="traj-row">
+          <div class="traj-row__version">v1.0<span>Explication</span></div>
+          <div class="traj-row__desc">Causes du risque, impact chiffré d'une collecte, simulation « et si ? », comparaison de stratégies.</div>
+        </div>
+        <div class="traj-row traj-row--current">
+          <div class="traj-row__version">v1.1<span>Actuelle</span></div>
+          <div class="traj-row__desc">Résumé exécutif, priorités nationales, horizon temporel, décisions métier plutôt que curseurs, recommandation explicite.</div>
+        </div>
+        <div class="traj-row traj-row--future">
+          <div class="traj-row__version">v2.0<span>À venir</span></div>
+          <div class="traj-row__desc">Prévision à 30 jours et calibration — nécessite des données réelles du CNTS.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">§ 9 — La mission proposée</span>
         <h2>Ce que couvrirait une mission</h2>
       </div>
 
@@ -841,10 +1186,9 @@
 <section class="closing">
   <div class="shell prose">
     <h2>La prochaine étape, c'est une conversation — pas un contrat.</h2>
-    <p>Ce prototype existe pour être challengé&nbsp;: sur les seuils, sur la logique de redistribution, sur ce qui manque. C'est le point de départ d'une discussion sur ce qu'une mission apporterait avec les vraies données du CNTS.</p>
+    <p>Ce prototype existe pour être challengé&nbsp;: sur les seuils, sur les recommandations, sur ce qui manque. C'est le point de départ d'une discussion sur ce qu'une mission apporterait avec les vraies données du CNTS.</p>
     <div class="cta-row">
       <a class="btn btn--rust" href="https://cntsforecastingpoc-k5wfndy7ydr29sbgn3va26.streamlit.app/" target="_blank" rel="noopener">Ouvrir le prototype ↗</a>
-      <a class="btn btn--ghost" href="https://github.com/hpkonan/CNTS_forecasting_poc" target="_blank" rel="noopener">Code source ↗</a>
     </div>
   </div>
 </section>
