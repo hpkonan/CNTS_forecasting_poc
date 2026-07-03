@@ -38,7 +38,7 @@ Les responsables du CNTS doivent régulièrement répondre à des questions tell
 
 Aujourd'hui, ces décisions reposent principalement sur l'expérience des équipes et l'analyse des données disponibles.
 
-L'objectif de ce projet est d'apporter un outil complémentaire permettant d'améliorer cette prise de décision grâce à l'analyse prédictive.
+Ce projet n'est pas un outil de prévision : c'est un système d'aide à la décision. Le forecasting, les règles métier et les recommandations en sont des composants internes — la valeur livrée est d'aider le CNTS à décider plus vite, de façon plus objective, plus transparente et plus explicable.
 
 ---
 
@@ -128,6 +128,8 @@ pip install -r requirements.txt
 # Notebooks
 jupyter notebook 02_EDA.ipynb
 jupyter notebook 03_decision_engine.ipynb
+jupyter notebook 04_dss_v1.ipynb
+jupyter notebook 05_dss_v1_1.ipynb
 
 # Tableau de bord
 streamlit run app.py
@@ -145,30 +147,51 @@ Le prototype est destiné en priorité :
 
 ---
 
-# 9. Vision à long terme
+# 9. Roadmap produit
 
-Ce prototype constitue la première brique d'une plateforme plus large d'aide à la décision pour les systèmes transfusionnels.
+Le logiciel actuel du CNTS répond à *« Que se passe-t-il ? »*. Le DSS doit répondre à *« Que devons-nous faire maintenant, et pourquoi ? »*
 
-À terme, celle-ci pourrait intégrer :
+## Version 0.1 — Dashboard ✅
 
-- prévision des besoins ;
-- optimisation des stocks ;
-- redistribution intelligente des produits sanguins ;
-- planification des campagnes de collecte ;
-- aide à l'approvisionnement en matériel de collecte ;
-- suivi des performances ;
-- détection d'anomalies.
+- Moteur de règles métier (risque par seuils de couverture stock/demande)
+- Recommandations opérationnelles simples
+- Tableau de bord interactif, filtrable par mois / région / groupe sanguin
+
+## Version 1.0 — Aide à la décision ✅
+
+- **Causes** : chaque niveau de risque est expliqué (baisse de collecte, hausse inhabituelle de la demande, stock sous le seuil de sécurité), comparé à la moyenne glissante des 3 mois précédents
+- **Impact** : chaque recommandation de collecte est chiffrée (« collecter ~43 unités ferait passer le risque d'Élevé à Moyen »)
+- **Scénarios** : simulateur « et si ? » — collecte supplémentaire, transfert reçu, variation de la demande — avec recalcul immédiat du risque
+- **Stratégies** : comparaison transfert / campagne de collecte / statu quo, avec risque résultant et effort estimé
+
+## Version 1.1 — Présentable en réunion de direction ✅
+
+- **Résumé exécutif** : la situation nationale (régions à risque, déficit total, groupes sous tension, priorités) en tête de page, compréhensible en 15 secondes
+- **Causes enrichies** : ajout du cas « aucune région excédentaire disponible pour redistribuer »
+- **Horizon temporel** : estimation du nombre de jours de stock restants au rythme de consommation du mois (une estimation de rythme, pas une prévision)
+- **Priorités nationales** : classement des situations à risque par urgence réelle (jours de stock), pas seulement par niveau de risque
+- **Stratégies notées** : impact et effort en étoiles, avec une recommandation explicite (ex. transfert préféré à une collecte quand il est disponible et moins coûteux)
+- **Simulateur par décisions** : le décideur choisit une décision métier (« organiser une campagne ciblée », « redistribuer », « ne rien faire ») — le moteur calcule les unités, pas l'inverse
+
+*Hors scope de cette version : scénarios multi-régions (« campagne nationale »), qui mériteraient leur propre section plutôt que d'être compressés dans le panneau par situation.*
+
+## Version 2.0 — Anticipation (à venir, nécessite des données réelles)
+
+- Prévision de la demande à 30 jours
+- Optimisation des transferts et des campagnes de collecte
+- Calibration des seuils et des règles avec les équipes du CNTS
+- Intégration avec le logiciel existant du CNTS
 
 ---
 
 # 10. État d'avancement
 
-✅ Prototype en cours de développement.
-
-Version actuelle :
+✅ Prototype fonctionnel — Version 1.1.
 
 - ✅ données simulées ;
 - ✅ analyse exploratoire (`02_EDA.ipynb`) ;
 - ✅ moteur de décision par règles métier (`src/decision_engine.py`, démontré dans `03_decision_engine.ipynb`) — reproduit 98,9 % des niveaux de risque historiques du dataset simulé ;
 - ✅ tableau de bord décisionnel interactif (`app.py`, Streamlit) ;
-- ⏳ à venir : couche de projection à 30 jours (moyenne mobile), narratif de présentation pour le pitch.
+- ✅ causes, impact chiffré, simulation de scénarios et comparaison de stratégies (`04_dss_v1.ipynb`) ;
+- ✅ résumé exécutif, priorités nationales, horizon temporel, simulateur par décisions, stratégies notées (`05_dss_v1_1.ipynb`, intégré dans `app.py`) ;
+- ⏳ à venir (V2.0) : prévision à 30 jours, calibration sur données réelles du CNTS.
