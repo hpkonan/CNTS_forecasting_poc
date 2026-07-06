@@ -329,6 +329,7 @@
     <span class="topbar__title">CNTS · Atelier de cadrage</span>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <span class="progress-label" id="progressLabel">0 / 0 répondues</span>
+    <button class="btn btn--ghost btn--sm" id="btnReset" title="Effacer toutes les réponses saisies dans ce navigateur">Réinitialiser</button>
     <button class="btn btn--ghost btn--sm" id="btnPrint">Imprimer</button>
     <button class="btn btn--rust btn--sm" id="btnExport">Télécharger mes réponses</button>
   </div>
@@ -962,8 +963,25 @@
     showToast(opened ? "PDF ouvert dans un nouvel onglet" : "PDF téléchargé");
   }
 
+  function resetAnswers(){
+    if (!window.confirm("Effacer toutes les réponses saisies dans ce navigateur ? Cette action est irréversible.")){
+      return;
+    }
+    fields.forEach(function(field){
+      var qid = field.getAttribute("data-qid");
+      if (field.type === "checkbox") field.checked = false;
+      else field.value = "";
+      delete answers[qid];
+    });
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+    answers = {};
+    updateProgress();
+    showToast("Réponses effacées");
+  }
+
   document.getElementById("btnExport").addEventListener("click", exportAnswers);
   document.getElementById("btnExport2").addEventListener("click", exportAnswers);
+  document.getElementById("btnReset").addEventListener("click", resetAnswers);
   document.getElementById("btnPrint").addEventListener("click", function(){
     document.querySelectorAll(".qsection").forEach(function(s){ s.classList.add("open"); });
     window.print();
